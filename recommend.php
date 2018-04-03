@@ -15,7 +15,7 @@ function make_recommend() {
         // 但是未来，可能会增加非实时的推荐，做出推荐的时候用户可能并未触发查看推荐结果的行为，所以seen_time可能为空。
         // 在这个判断里，加上了seen_time is not null的判断，以支持未来非实时的推荐
         $sql = "select uid, photo_id, description, nickname, (year(now())-year(birthday)-1) + ( DATE_FORMAT(birthday, '%m%d') <= DATE_FORMAT(NOW(), '%m%d') ) as age from user where uid <> '$uid' and sex <> $sex
-            and uid in (select uid from matching where target_uid='$uid')
+            and uid in (select uid from matching where target_uid='$uid' and action=1)
             and uid not in (select target_uid from recommend where for_uid='$uid' and seen_time is not null)
             and verify = 1
             and disabled = 0
