@@ -106,6 +106,17 @@ photo表是用户的照片信息：
           `verify` tinyint(4) DEFAULT NULL,
           `deleted` tinyint(4) DEFAULT NULL
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+        
+另提供了一个简单的辅助函数
+
+    function result_to_array($result) {
+        $ret = array();
+        while ($row = $result->fetch_assoc()) {
+            $ret[] = $row;
+        }
+
+        return $ret;
+    }
 
 下边是初始的推荐算法。
 
