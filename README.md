@@ -142,7 +142,7 @@ photo表是用户的照片信息：
                 order by rand()
                 limit $num";
 
-            $result = $G['mysqli']->query($sql) or die($G['mysqli']->error);
+                $result = $G['mysqli']->query($sql) or die($G['mysqli']->error);
                 if ($result->num_rows != 0) return result_to_array($result);
             }
 
